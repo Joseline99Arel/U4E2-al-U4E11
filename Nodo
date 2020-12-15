@@ -1,0 +1,15 @@
+package Main;
+public class Nodo 
+{
+    int Num;
+    String Nombre;
+    Nodo Izquierda;
+    Nodo Derecha;
+    
+    public Nodo(String Nombre, int Num) {
+        this.Nombre = Nombre;
+        this.Num = Num;
+        this.Derecha = null;
+        this.Izquierda = null;
+    }
+}
