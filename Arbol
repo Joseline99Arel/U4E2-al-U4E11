@@ -1,0 +1,136 @@
+package Main;
+public class Arbol {
+    
+    Nodo NodoPadre = null;
+    Nodo NodoRaiz = null;
+    Nodo PersonaPeq = null;
+    Nodo PersonaGra = null;
+    int Nodos=0, sum=0;
+    int edad, altura;
+    
+    public void  Entrada(){
+        Nodo Nodo1 = new Nodo("Ana", 1997);
+        Nodo Nodo2 = new Nodo("Roberto", 1982);
+        Nodo Nodo3 = new Nodo("Fernando", 1981);
+        Nodo Nodo4 = new Nodo("Carmen", 1970);
+        Nodo Nodo5 = new Nodo("Cristal", 1993);
+        Nodo Nodo6 = new Nodo("Gustabo", 1986);
+        Nodo Nodo7 = new Nodo("Martha", 1990);
+        Nodo Nodo8 = new Nodo("Joseline", 2003);
+        Nodo Nodo9 = new Nodo("Ramiro", 2001);
+        Nodo Nodo10 = new Nodo("Lalo", 2002);
+        Nodo Nodo11 = new Nodo("Alicia", 2009);
+        Nodo Nodo12 = new Nodo("Cesar", 2005);
+        
+        Acomodar(Nodo1);
+        Acomodar(Nodo2);
+        Acomodar(Nodo3);
+        Acomodar(Nodo4);
+        Acomodar(Nodo5);
+        Acomodar(Nodo6);
+        Acomodar(Nodo7);
+        Acomodar(Nodo8);
+        Acomodar(Nodo9);
+        Acomodar(Nodo10);
+        Acomodar(Nodo11);
+        Acomodar(Nodo12);
+    }
+    
+    public void Acomodar(Nodo Nodo){
+        if(NodoPadre == null){
+            NodoRaiz = Nodo;
+            NodoPadre = Nodo;
+            PersonaPeq = Nodo;
+            PersonaGra = Nodo;
+        }
+        else{
+            if (Nodo.Num > PersonaPeq.Num){
+                PersonaPeq = Nodo;
+            }
+            if (Nodo.Num < PersonaGra.Num){
+                PersonaGra = Nodo;
+            }
+            
+            if(Nodo.Num < NodoPadre.Num){
+                if (NodoPadre.Izquierda == null){
+                    NodoPadre.Izquierda = Nodo;
+                    NodoPadre = NodoRaiz; 
+                }
+                else{
+                    NodoPadre = NodoPadre.Izquierda;
+                    Acomodar(Nodo);
+                }
+            }
+            else{
+                if (NodoPadre.Derecha == null){
+                    NodoPadre.Derecha = Nodo;
+                    NodoPadre = NodoRaiz; 
+                }
+                else{
+                    NodoPadre = NodoPadre.Derecha;
+                    Acomodar(Nodo);
+                }
+            }
+        }
+    }
+    
+    public void preOrden(Nodo r){
+        if (r!=null){
+            System.out.println(r.Nombre);
+            preOrden(r.Izquierda);
+            preOrden(r.Derecha);
+        }
+    }
+    
+    public void inOrden(Nodo r){
+        if (r!=null){
+            inOrden(r.Izquierda);
+            System.out.println(r.Nombre);
+            inOrden(r.Derecha);
+        }
+    }
+        
+    public void postOrden(Nodo r){
+        if (r!=null){
+            postOrden(r.Izquierda);
+            postOrden(r.Derecha);
+            System.out.println(r.Nombre);
+        }
+    }
+    
+    public void CuentaNodos(Nodo Raiz)
+    {
+        if (NodoRaiz == null)
+        {
+            System.out.println("No hay Elemenetos en el Arbol");
+        }
+        else
+        {
+            if (Raiz!=null)
+            {
+                CuentaNodos(Raiz.Izquierda);
+                Nodos++;
+                CuentaNodos(Raiz.Derecha);
+            }
+        }
+    }
+    
+    public void Suma(Nodo r){
+        if (r!=null){
+            Suma(r.Izquierda);
+            edad = 2020 - r.Num;
+            sum = sum + edad;
+            Suma(r.Derecha);
+        }
+    }
+        
+    public void Altura(Nodo r, int alt){
+        if(r != null){
+            Altura(r.Izquierda, alt +1+1);
+            if(alt > altura){
+                altura = alt;
+            }
+            Altura(r.Derecha, alt+1);
+        }
+    }
+}
