@@ -1,0 +1,83 @@
+package Main;
+import java.util.Scanner;
+public class Main {
+    
+    public static void main (String []args){
+        
+    Scanner entrada = new Scanner (System.in);
+    
+    Arbol Objeto = new Arbol();
+    Objeto.Entrada();
+    
+        System.out.println("Los Datos se ingresaron de manera correcta");
+    
+    int a=1,Respuesta=0;
+    
+    while(a==1){
+        System.out.println("Elije una Opcion");
+        System.out.println("1.- ¿Quien es la persona mas pequeña y que edad tiene?");
+        System.out.println("2.- ¿Quien es la persona mas grande y que edad tiene?");
+        System.out.println("3.- ¿Cuantos años de diferencia tiene la persona mas grande y la persona mas chica?");
+        System.out.println("4.- ¿Cuantos Participantes hay");
+        System.out.println("5.- ¿Cuanto es la suma de las edades de los participantes");
+        System.out.println("6.- ¿Cual es el promedio de edad de los participantes?");
+        System.out.println("7.- Mostrar Altura");
+        System.out.println("8.- Mostrar en Pre-Orden");
+        System.out.println("9.- Mostrar en In-Orden");
+        System.out.println("10.- Mostrar en Post-Orden");
+        System.out.println("11.- Salir");
+        Respuesta=entrada.nextInt();
+            
+        if(Respuesta>0 && Respuesta<12){
+            switch(Respuesta){
+                case 1:
+                    System.out.println("Persona mas pequeña: "+ Objeto.PersonaPeq.Nombre);
+                    System.out.println("Edad: "+ (2020 - Objeto.PersonaPeq.Num));
+                break;
+                case 2: 
+                    System.out.println("Persona mas Grande: "+ Objeto.PersonaGra.Nombre);
+                    System.out.println("Edad: "+ (2020 - Objeto.PersonaGra.Num));
+                break;
+                case 3: 
+                    System.out.println((2020 - Objeto.PersonaGra.Num) - (2020 - Objeto.PersonaPeq.Num));
+                break;
+                case 4: 
+                    Objeto.CuentaNodos(Objeto.NodoRaiz);
+                    System.out.println("Total de nodos: "+ Objeto.Nodos);
+                break;
+                case 5:
+                    Objeto.Suma(Objeto.NodoRaiz);
+                    System.out.println("Suma: " + Objeto.sum);
+                break;
+                case 6:
+                    double prom=0;
+                    prom= Objeto.sum / Objeto.Nodos;
+                    System.out.println("Promedio: "+ prom);
+                break;
+                case 7:
+                    Objeto.Altura(Objeto.NodoRaiz, 1);
+                    System.out.println("Altura: "+ Objeto.altura);
+                break;
+                case 8:
+                    Objeto.preOrden(Objeto.NodoRaiz);
+                break;
+                case 9:
+                    Objeto.inOrden(Objeto.NodoRaiz);
+                break;
+                case 10:
+                    Objeto.postOrden(Objeto.NodoRaiz);
+                break;
+                case 11:
+                    System.exit(0);
+                break;
+            }
+            System.out.println("Quieres repetir el proceso 1:Si 2:No");
+            a=entrada.nextInt();
+            }
+            else
+            {
+                System.out.println("El numero que ingresaste esta fuera de las opciones ");
+            }
+        }     
+    }
+}
